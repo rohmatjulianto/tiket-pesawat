@@ -21,27 +21,44 @@
 				</ul>	
 				<div class="clearfix"> </div>	
 				<div class="resp-tabs-container">
-<!-- one way mamen -->		
+<!-- one way mamen -->
+
+<?php
+if (is_array($data) || is_object($data))
+{
+    foreach ($data as $m)
+    {
+        $from = $m->from;
+        $to = $m->to;
+        $depart = $m->depart;
+        $class = $m->class;
+        $adults = $m->adults;
+        $child = $m->child;
+    }
+}
+?>
 					<div class="tab-1 resp-tab-content resp-tab-active oneway">
-						<form action="<?php echo base_url();?>index.php/welcome/tambah_pesan" method="post">
+                        <?php
+                            echo form_open('index.php/welcome/proses_edit');
+                        ?>
 							<div class="from">
 								<h3>From</h3>
-								<input type="text" name="from" class="city1" placeholder="Type Departure City" required="">
+								<input type="text" name="from" value="<?php echo $from;?>"   class="city1" placeholder="Type Departure City" required="">
 							</div>
 							<div class="to">
 								<h3>To</h3>
-								<input type="text" name="to" class="city2" placeholder="Type Destination City" required="">
+								<input type="text" name="to" value="<?php echo $to;?>" class="city2" placeholder="Type Destination City" required="">
 							</div>
 							<div class="clear"></div>
 							<div class="date">
 								<div class="depart">
 									<h3>Depart</h3>
-									<input class="date" id="datepicker2" name="depart" type="text" value="mm/dd/yyyy" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
+									<input class="date" id="datepicker2" name="depart" type="text" value="<?php echo $depart;?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
 								</div>
 							</div>
 							<div class="class">
 								<h3>Class</h3>
-								<select id="w3_country1" name="class" onchange="change_country(this.value)" class="frm-field required">
+								<select id="w3_country1" value="<?php echo $class;?>" name="class" onchange="change_country(this.value)" class="frm-field required">
 									<option value="Economy">Economy</option>  
 									<option value="Premium Economy">Premium Economy</option>   
 									<option value="Business">Business</option>   
@@ -54,14 +71,14 @@
 								<div class="adults">
 									<h3>Adult:(12+ yrs)</h3>
 									<div class="quantity-select"> 
-										<input type="number" name="adults" value="0" min="0" max="10" style="padding:10%">
+										<input type="number" name="adults" value="<?php echo $adults;?>" min="0" max="10" style="padding:10%">
 									</div>
 								</div>
 								<div class="child">
 									<h3>Child:(2-11 yrs)</h3>
 									<div class="quantity"> 
 										<div class="quantity-select">                           
-											<input type="number" name="child" value="0" min="0" max="10" style="padding:10%;">
+											<input type="number" name="child" value="<?php echo $child;?>" min="0" max="10" style="padding:10%;">
 									</div>
 								</div>
 							</div>
@@ -69,7 +86,9 @@
 							</div>
 							<div class="clear"></div>
 							<input type="submit" value="Search Flights">
-						</form>	
+                        <?php
+                            echo form_close();
+                        ?>
 								
 					</div>
 <!-- Multy City mamen-->
