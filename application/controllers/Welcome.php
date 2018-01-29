@@ -47,8 +47,28 @@ class Welcome extends CI_Controller {
 	}
 	function ganti(){
 		$id = $this->input->get('id');
-		$muncul['data'] = $this->Modal_madel->ganti_pesan($id);
-		$this->load->view('ganti_pesanan',$muncul);
+		$data ['data'] = array('tampil_pesan' => $this->Modal_madel->ganti_pesan($id));
+		$this->load->view('ganti_pesanan',$data);
+	}
+	function proses_ganti(){
+		$id = $this->input->post('id');
+		$from = $this->input->post('from');
+		$to = $this->input->post('to');
+		$depart = $this->input->post('depart');
+		$class = $this->input->post('class');
+		$adults = $this->input->post('adults');
+		$child = $this->input->post('child');
+
+		$data = array(
+			'from' => $from,
+			'to' => $to,
+			'depart' => $depart,
+			'class' => $class,
+			'adults' => $adults,
+			'child' => $child
+		);
+	 $this->Modal_madel->update($id,$data,'pesan');
+	 redirect (base_url ('index.php/welcome/tampil'));
 	}
 }
 ?>

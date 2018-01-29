@@ -12,14 +12,13 @@
         $data = array('id' =>$id);
         $this->db->delete('pesan',$data);
     }
-    function ganti_pesan(){
-        $this->db->select('*');
-        $this->db->from('pesan');
-        $this->db->where('id');
-        $query = $this->db->get();
-        if($query->num_rows()>0){
-            return $query->result();
-        }
+    function ganti_pesan($id){
+        $this->db->where('id',$id);
+        $query = $this->db->get('pesan');
+        return $query->row();
+    }
+    function update($id,$data){
+        $this->db->update('pesan',$data, 'id = '.$id);
     }
  }
 ?>
