@@ -41,7 +41,8 @@
 							<div class="date">
 								<div class="depart">
 									<h3>Depart</h3>
-									<input class="date" id="datepicker2" name="depart" type="text" value="<?php echo $m->depart?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
+									<input class="date" id="datepicker2" name="depart" type="text" value="<?php echo $m->depart?>" 
+									onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
 								</div>
 							</div>
 							<div class="class">

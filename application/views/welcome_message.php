@@ -30,7 +30,7 @@
 							</div>
 							<div class="to">
 								<h3>To</h3>
-								<input type="text" name="to" class="city2" placeholder="Type Destination City" required="">
+								<input type="text" name="to" class="city1" placeholder="Type Destination City" required="">
 							</div>
 							<div class="clear"></div>
 							<div class="date">

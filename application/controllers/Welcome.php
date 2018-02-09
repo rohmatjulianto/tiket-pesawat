@@ -10,10 +10,78 @@ class Welcome extends CI_Controller {
 	}
 	function index()
 	{
-		$this->load->view('welcome_message');
+		$this->load->view('pesan');
 	}
-	
+	function login(){
+		$this->load->view('login');
+	}
+	//ruteeeeeee
+	function ganti_rute(){
+		$id = $this->input->get('id');
+		$data ['data'] = array('tampil_rute' => $this->Modal_madel->ganti_rute($id));
+		$this->load->view('rute/ganti_rute',$data);
+	}
+	function proses_ganti_rute(){
+		$id = $this->input->post('id');
+		$maskapai = $this->input->post('maskapai');
+		$berangkat= $this->input->post('berangkat');
+		$tujuan= $this->input->post('tujuan');
+		$jam_berangkat= $this->input->post('jam_berangkat');
+		$jam_tiba= $this->input->post('jam_tiba');
+		$class= $this->input->post('class');
+		$harga= $this->input->post('harga');
 
+		$data = array(
+			'maskapai' => $maskapai, 
+			'berangkat' => $berangkat, 
+			'tujuan' => $tujuan, 
+			'jam_berangkat' => $jam_berangkat, 
+			'jam_tiba' => $jam_tiba, 
+			'class' => $class, 
+			'harga' => $harga, 
+		);
+	 $this->Modal_madel->update_rute($id,$data,'rute');
+	 redirect (base_url ('index.php/welcome/tampil_rute'));
+	}
+	function hapus_rute(){
+		$id = $this->input->get('id');
+		$this->Modal_madel->hapus_rute($id);
+		redirect('welcome/tampil_rute');
+	}
+	function form_rute(){
+		$this->load->view('rute/tambah_rute');
+	}
+	function tampil_rute(){
+		$data = array('data' => $this->Modal_madel->tampil_rute()->result());
+		$this->load->view('rute/tampil_rute',$data);
+	}
+	function tambah_rute(){
+		$maskapai = $this->input->post('maskapai');
+		$berangkat= $this->input->post('berangkat');
+		$tujuan= $this->input->post('tujuan');
+		$jam_berangkat= $this->input->post('jam_berangkat');
+		$jam_tiba= $this->input->post('jam_tiba');
+		$class= $this->input->post('class');
+		$harga= $this->input->post('harga');
+
+		$data = array(
+			'maskapai' => $maskapai, 
+			'berangkat' => $berangkat, 
+			'tujuan' => $tujuan, 
+			'jam_berangkat' => $jam_berangkat, 
+			'jam_tiba' => $jam_tiba, 
+			'class' => $class, 
+			'harga' => $harga, 
+		);
+		$this->Modal_madel->tambah_rute($data);
+		redirect('welcome/tampil_rute');
+	}
+	//ruteeeeee
+	//pesaaan
+	function pesan(){
+		$this->load->view('pesan');
+	}
+	//pesaaan
 	function tambah_pesan()
 	{
 		$from = $this->input->post('from');
