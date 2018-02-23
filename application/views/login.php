@@ -29,7 +29,14 @@
     </div>
     <!-- /.box-header -->
     <!-- form start -->
-    <form class="form-horizontal">
+    <?php
+        if(isset($_POST['pencet'])){
+            $u = $this->input->post('username');
+            $p = $this->input->post('password');
+            $this->modal_madel->getdatalogin($u,$p);
+        }
+    ?>
+    <form class="form-horizontal" method="post" action="">
     <div class="box-body">
         <div class="form-group">
         <label for="inputEmail3" class="col-sm-2 control-label">Username</label>
@@ -56,8 +63,8 @@
     </div>
     <!-- /.box-body -->
     <div class="box-footer">
-        <button type="submit" class="btn btn-default">Cancel</button>
-        <button type="submit" class="btn btn-info pull-right">Sign in</button>
+        <button type="reset class="btn btn-default">Cancel</button>
+        <button type="submit" name="pencet" class="btn btn-info pull-right">Sign in</button>
     </div>
 </body>
     <!-- jQuery 3 -->

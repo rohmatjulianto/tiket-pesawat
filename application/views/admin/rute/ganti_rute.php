@@ -28,56 +28,37 @@
     <title>Tambah Pesanan </title>
 </head>
 <body>
-    <form  class="form-input"action="<?php echo base_url();?>index.php/welcome/tambah_rute" method="post" 
+<?php
+    foreach($data as $d){
+?>
+    <form  class="form-input"action="<?php echo base_url();?>welcome/proses_ganti_rute" method="post" 
     style="">
         <div class="row form-group">
             <div class="col-md-12 "> <h5>Maskapai</h5>
-            <select name="maskapai" class="form-control" id="">
-                <option value="">-- Pilih Maskapai --</option>
-                <option value="Garuda Indonesia">Garuda Indonesia</option>
-                <option value="Lion Air">Lion Air</option>
-                <option value="Air Asia">Air Asia</option>
-                <option value="Sriwijaya Air">Sriwijaya Air</option>
-            </select>
-                <!-- <input type="text" name="maskapai" class="form-control"> -->
+            <input type="hidden" name="id" value="<?php echo $d->id?>">
+                <input type="text"   name="maskapai" value="<?php echo $d->maskapai?>"class="form-control">
             </div>
         </div>
         <div class="row form-group">
-            <div class="col-md-6"> <h5>Bandara Asal</h5>
-            <select name="berangkat" class="form-control" id="">
-                <option value="">-- Pilih Bandara Asal --</option>
-                <option value="CGK">Jakarta (CGK)</option>
-                <option value="DPS">Denpasar (DPS)</option>
-                <option value="SRG">Semarang (SRG)</option>
-                <option value="SUB">Surabaya (SUB)</option>
-                <option value="JOG">Yogyakarta (JOG)</option>
-            </select>
-                <!-- <input type="text" name="berangkat" class="form-control"> -->
+            <div class="col-md-6"> <h5>Kota Pemberangkatan</h5>
+                <input type="text"  name="berangkat" value="<?php echo $d->berangkat?>"class="form-control">
             </div>
-            <div class="col-md-6"> <h5>Bandara Tujuan</h5>
-            <select name="tujuan" class="form-control" id="">
-                <option value="">-- Pilih Bandara Tujuan --</option>
-                <option value="CGK">Jakarta (CGK)</option>
-                <option value="DPS">Denpasar (DPS)</option>
-                <option value="SRG">Semarang (SRG)</option>
-                <option value="SUB">Surabaya (SUB)</option>
-                <option value="JOG">Yogyakarta (JOG)</option>
-            </select>
-                <!-- <input type="text" name="tujuan" class="form-control"> -->
+            <div class="col-md-6"> <h5>Kota Tujuan</h5>
+                <input type="text"  name="tujuan" value="<?php echo $d->tujuan?>"class="form-control">
             </div>
         </div>
         <div class="row form-group">
             <div class="col-md-6 "> <h5>Waktu Pemberangkatan (WIB)</h5>
-                <input type="time" name="jam_berangkat" class="form-control">
+                <input type="time"  name="jam_berangkat" value="<?php echo $d->jam_berangkat?>"class="form-control">
             </div>
             <div class="col-md-6"> <h5>Waktu Tiba (WIB)</h5>
-                <input type="time" name="jam_tiba" class="form-control">
+                <input type="time"  name="jam_tiba" value="<?php echo $d->jam_tiba?>"class="form-control">
             </div>
         </div>
         <div class="row form-group">
             <div class="col-md-12"> <h5>Kelas</h5>
                 <select name="class" class="form-control">
-                <option value="">-- Pilih Kelas --</option>
+                <option value="<?php echo $d->class?>"><?php echo $d->class?></option>
                 <option value="Ekonomi">Ekonomi</option>
                 <option value="Reguler">Reguler</option>
                 <option value="Eksekutif">Eksekutif</option>
@@ -86,8 +67,8 @@
             </div>
         </div>
         <div class="row form-group">
-            <div class="col-md-12"> <h5>Banderol Harga (IDR)</h5>
-                <input type="text" name="harga" id="harga" class="form-control"/>
+            <div class="col-md-12"> <h5>Banderol Harga (Rupiah)</h5>
+                <input type="text"  name="harga" id="harga" value="<?php echo $d->harga?>"class="form-control">
             </div>
         </div>
         <div class="row form-group">
@@ -97,9 +78,12 @@
         </div>
         </div>
     </form>
+<?php
+    }
+?>
 </body>
 <!-- jQuery 3 -->
-<script src="<?php echo base_url();?>/resource/js/jquery-3.1.0.min.js"></script>
+<script src="<?php echo base_url();?>/resource/admin/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo base_url();?>/resource/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- jquery.maskMoney.min.js -->

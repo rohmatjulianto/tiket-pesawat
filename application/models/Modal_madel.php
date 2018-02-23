@@ -22,7 +22,25 @@
         $this->db->insert('rute',$data);
     }
 //diatas ini untuk bagian rute
-
+// admin
+    function getdatalogin($user,$pass){
+        $u = mysql_real_escape_string($user);
+        $p = md5(mysql_real_escape_string($pass));
+        $kulonuwun = $this->db->get_where('tb_user', array(
+            'username' => $u,
+            'password' => $p));
+            if($kulonuwun->num_rows()> 0){
+                $anjay = $kulonuwun->row();
+                if ($u == $anjay->username && $p == $anjay->password) {
+                    if ($anjay->level == 1) 
+                        header('location:'.base_url().'admin');
+                    else
+                        header('location :'.base_url());
+                    
+                    }
+                }
+            }
+            
     function masuk_pesan($data){
          $this->db->insert('pesan',$data);
     }
